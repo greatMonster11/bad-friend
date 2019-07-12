@@ -1,5 +1,6 @@
 const btn = document.querySelector(".talk");
 const content = document.querySelector(".content");
+const wrapper = document.querySelector(".wrapper");
 
 const greetings = [
   "Im good you little peace of love",
@@ -33,11 +34,16 @@ btn.addEventListener("click", () => {
 function readOutLoud(message) {
   const speech = new SpeechSynthesisUtterance();
   // for default value
-  speech.text = "i don't know what you said";
+  speech.text = message;
 
   if (message.includes("how are you")) {
     const finalText = greetings[Math.floor(random() * greetings.length)];
     speech.text = finalText;
+  }
+
+  if (message.includes("dark mode")) {
+    speech.text = "Switching to dark mode";
+    wrapper.setAttribute("class", "darkMode");
   }
 
   speech.volume = 1;
